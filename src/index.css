@@ -201,9 +201,22 @@
   }
 
   /* Mobile Bottom Navigation */
+  /* Glass utility for frosted material / backdrop blur */
+  .glass {
+    background-color: rgb(255 255 255 / 0.32); /* fallback translucent white */
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgb(255 255 255 / 0.12);
+  }
+
   .bottom-nav {
-    @apply fixed bottom-0 left-0 right-0 bg-card border-t border-border z-50;
+    @apply fixed bottom-0 left-0 right-0 z-50;
     padding-bottom: env(safe-area-inset-bottom);
+    /* use card token with low opacity for light/dark compatibility */
+    background-color: color-mix(in srgb, hsl(var(--card)) 72%, transparent);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    border-top: 1px solid color-mix(in srgb, hsl(var(--border)) 12%, transparent);
   }
 
   .bottom-nav-item {

@@ -1,14 +1,35 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { ArrowRight, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/hero-construction.jpg';
-import cmcLogo from '@/assets/cmc-logo.png';
+import video from '@/assets/Video_Ready_After_Tagline_Removal.mp4';
 
 export const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [loadVideo, setLoadVideo] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     setIsVisible(true);
+
+    // Lazy-load video when hero scrolls into view (lower threshold for mobile)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setLoadVideo(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.05 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
   }, []);
 
   const scrollToContact = () => {
@@ -23,31 +44,97 @@ export const HeroSection = () => {
     }
   };
 
+  const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const toggleVideo = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      v.play();
+      setIsPlaying(true);
+    } else {
+      v.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  // Try to auto-play when video is loaded to improve behavior on mobile browsers
+  useEffect(() => {
+    if (!loadVideo || !videoRef.current) return;
+    const v = videoRef.current;
+    const tryPlay = async () => {
+      try {
+        await v.play();
+        setIsPlaying(true);
+      } catch (err) {
+        // autoplay blocked, remain paused — user can tap play
+        setIsPlaying(false);
+      }
+    };
+
+    tryPlay();
+  }, [loadVideo]);
+
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
+    <section id="home" ref={sectionRef as any} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Video (MP4) with image poster/fallback and overlay */}
       <div className="absolute inset-0">
-        <img 
-          src={heroImage} 
-          alt="CMC Infratech Construction Site" 
+        {/* Video shown on small+ screens; mobile will use the image fallback to save bandwidth */}
+        {loadVideo && (
+          <video
+            ref={videoRef}
+            className="block w-full h-full object-cover"
+            autoPlay={!prefersReducedMotion}
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster={heroImage}
+            aria-hidden="true"
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
+          >
+            <source src={video} type="video/mp4" />
+            {/* Fallback: browsers will display poster/image */}
+          </video>
+        )}
+
+        {/* Fallback image (always present) */}
+        <img
+          src={heroImage}
+          alt="CMC Infratech Construction Site"
           className="w-full h-full object-cover"
         />
+
         <div className="absolute inset-0 gradient-hero"></div>
+
+        {/* Play/Pause control for accessibility -- shown on md+ screens */}
+        {loadVideo && (
+          <button
+            type="button"
+            aria-pressed={isPlaying}
+            aria-label={isPlaying ? 'Pause background video' : 'Play background video'}
+            onClick={toggleVideo}
+            className="flex items-center justify-center absolute bottom-6 right-6 z-20 w-12 h-12 bg-white/20 hover:bg-white/30 text-white rounded-full backdrop-blur-sm touch-manipulation"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {isPlaying ? (
+                <>
+                  <rect x="6" y="5" width="3" height="14" fill="white" />
+                  <rect x="15" y="5" width="3" height="14" fill="white" />
+                </>
+              ) : (
+                <path d="M5 3v18l15-9L5 3z" fill="white" />
+              )}
+            </svg>
+          </button>
+        )}
       </div>
 
       {/* Content */}
       <div className="relative z-10 section-container text-center text-white">
         <div className={`fade-in-up ${isVisible ? 'animate' : ''}`}>
-          {/* Company Logo */}
-          <div className="mb-8">
-            <div className="w-20 h-20 mx-auto mb-4 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center p-3">
-              <img 
-                src={cmcLogo}
-                alt="CMC Infratech Logo" 
-                className="w-full h-full object-contain"
-              />
-            </div>
-          </div>
+          {/* Logo removed per request */}
 
           {/* Main Heading */}
           <h1 className="text-hero mb-6">
@@ -55,26 +142,7 @@ export const HeroSection = () => {
             <span className="block text-3xl sm:text-4xl lg:text-5xl text-secondary">Pvt. Ltd.</span>
           </h1>
 
-          {/* Tagline */}
-          <p className="text-xl sm:text-2xl lg:text-3xl mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
-            "We understand your needs on construction"
-          </p>
-
-          {/* Key Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-12">
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-secondary mb-2">500+</div>
-              <div className="text-sm sm:text-base text-white/80">Skilled Professionals & Engineers</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-secondary mb-2">120+</div>
-              <div className="text-sm sm:text-base text-white/80">Projects Completed Across Odisha</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-secondary mb-2">2013</div>
-              <div className="text-sm sm:text-base text-white/80">Established by Mr. Anirudha Mohanty</div>
-            </div>
-          </div>
+          {/* Tagline and key stats removed per request */}
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

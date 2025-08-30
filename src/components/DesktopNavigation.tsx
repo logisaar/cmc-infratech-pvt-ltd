@@ -55,22 +55,22 @@ export const DesktopNavigation = () => {
   return (
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-card/95 backdrop-blur-md shadow-soft' : 'bg-transparent'
+        isScrolled ? 'bg-card/95 backdrop-blur-md shadow-soft border-b border-border/10' : 'bg-card/40 backdrop-blur-md'
       }`}>
         <div className="section-container">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <div className="flex items-center space-x-3">
+            {/* Logo (clickable) */}
+            <a href="#home" title="CMC Infratech - Home" className="flex items-center space-x-3">
               <img 
                 src={cmcLogo}
                 alt="CMC Infratech Logo" 
                 className="h-10 w-auto"
               />
-              <div>
-                <h1 className="text-xl font-bold text-foreground">CMC Infratech</h1>
-                <p className="text-xs text-muted-foreground">Pvt. Ltd.</p>
+              <div className="leading-none">
+                <span className="block text-xl font-bold text-foreground">CMC Infratech</span>
+                <span className="block text-xs text-muted-foreground">Pvt. Ltd.</span>
               </div>
-            </div>
+            </a>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">

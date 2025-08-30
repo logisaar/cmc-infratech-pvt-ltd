@@ -235,6 +235,15 @@ export const ContactSection = () => {
                   <Send size={18} className="mr-2" />
                   Send Message
                 </Button>
+                {/* WhatsApp Quick Connect */}
+                <a
+                  href={`https://wa.me/919338047565?text=${encodeURIComponent('Connect with Whatshop number massage is send +91 93380 47565')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 block text-center w-full bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+                >
+                  Connect on WhatsApp
+                </a>
               </form>
             </div>
           </div>
