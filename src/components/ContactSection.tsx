@@ -90,7 +90,7 @@ export const ContactSection = () => {
     {
       icon: MapPin,
       title: 'Location',
-      details: 'Odisha, India',
+      details: 'Chorda, Jajpur Road, Odisha',
       description: 'Our headquarters location'
     },
     {

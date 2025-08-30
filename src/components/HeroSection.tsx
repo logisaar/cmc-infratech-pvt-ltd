@@ -64,15 +64,15 @@ export const HeroSection = () => {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-12">
             <div className="text-center">
               <div className="text-3xl sm:text-4xl font-bold text-secondary mb-2">500+</div>
-              <div className="text-sm sm:text-base text-white/80">Skilled Workforce</div>
+              <div className="text-sm sm:text-base text-white/80">Skilled Professionals & Engineers</div>
             </div>
             <div className="text-center">
               <div className="text-3xl sm:text-4xl font-bold text-secondary mb-2">120+</div>
-              <div className="text-sm sm:text-base text-white/80">Projects Completed</div>
+              <div className="text-sm sm:text-base text-white/80">Projects Completed Across Odisha</div>
             </div>
             <div className="text-center">
               <div className="text-3xl sm:text-4xl font-bold text-secondary mb-2">2013</div>
-              <div className="text-sm sm:text-base text-white/80">Since Established</div>
+              <div className="text-sm sm:text-base text-white/80">Established by Mr. Anirudha Mohanty</div>
             </div>
           </div>
 

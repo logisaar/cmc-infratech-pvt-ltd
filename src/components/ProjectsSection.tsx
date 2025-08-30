@@ -5,10 +5,10 @@ import civilImage from '@/assets/civil-construction.jpg';
 import companyImage from '@/assets/company-building.jpg';
 
 const stats = [
-  { icon: CheckCircle, value: '120+', label: 'Projects Completed', color: 'text-primary' },
-  { icon: Users, value: '500+', label: 'Staff Members', color: 'text-secondary' },
-  { icon: Clock, value: '86,000+', label: 'Work Hours', color: 'text-primary' },
-  { icon: Building, value: '50+', label: 'Active Projects', color: 'text-secondary' }
+  { icon: CheckCircle, value: '120+', label: 'Projects Completed Across Odisha', color: 'text-primary' },
+  { icon: Users, value: '500+', label: 'Skilled Professionals & Engineers', color: 'text-secondary' },
+  { icon: Clock, value: '11+', label: 'Years of Excellence', color: 'text-primary' },
+  { icon: Building, value: '3', label: 'Core Service Areas', color: 'text-secondary' }
 ];
 
 const projects = [

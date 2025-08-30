@@ -24,19 +24,19 @@ const clients = [
 
 const testimonials = [
   {
-    quote: "CMC Infratech has been our trusted partner for heavy equipment rental. Their professional approach and quality service have exceeded our expectations.",
-    client: "Industrial Partner",
-    project: "Heavy Equipment Operations"
+    quote: "CMC Infratech has been our trusted partner for heavy equipment rental and industrial project work. Their professional approach, advanced machinery fleet, and commitment to safety have consistently exceeded our expectations.",
+    client: "Jindal Stainless Limited",
+    project: "Industrial Equipment & Construction Services"
   },
   {
-    quote: "Excellent construction quality and timely delivery. The team's dedication to safety and efficiency is commendable.",
-    client: "Infrastructure Client",
-    project: "Civil Construction Project"
+    quote: "The team at CMC Infratech demonstrates exceptional expertise in material handling and O&M services. Their skilled workforce and timely delivery have made them our preferred construction partner.",
+    client: "JSW Cement Limited", 
+    project: "Material Handling & Construction Operations"
   },
   {
-    quote: "Their O&M services have significantly improved our operational efficiency. Highly recommended for industrial projects.",
-    client: "Manufacturing Partner",
-    project: "Material Handling Operations"
+    quote: "CMC Infratech's commitment to statutory compliance and man-machine-environment balance sets them apart in the industry. Their quality work and adherence to timelines have been remarkable.",
+    client: "Rashmi Metalliks Ltd",
+    project: "Civil Construction & Equipment Rental"
   }
 ];
 

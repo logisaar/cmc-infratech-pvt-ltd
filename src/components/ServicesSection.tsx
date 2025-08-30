@@ -5,22 +5,22 @@ import craneImage from '@/assets/crane-service.jpg';
 import civilImage from '@/assets/civil-construction.jpg';
 const services = [{
   title: 'Heavy Equipment Rental Service',
-  description: 'Comprehensive fleet of modern construction equipment including excavators, dumpers, graders, dozers, compactors, wheel loaders, backhoe loaders, and cranes. All equipment maintained to highest standards with experienced operators.',
+  description: 'Comprehensive fleet of advanced machinery including excavators, dumpers, graders, dozers, compactors, wheel loaders, backhoe loaders, and cranes. All equipment maintained to highest standards with experienced operators for industrial and mining sector projects.',
   icon: Truck,
   image: excavatorImage,
-  features: ['Modern Equipment Fleet', 'Experienced Operators', '24/7 Support', 'Flexible Rental Terms']
+  features: ['Advanced Machinery Fleet', 'Skilled Operators', 'Industrial & Mining Focus', 'Statutory Compliance']
 }, {
-  title: 'O&M and Material Handling Service',
-  description: 'Operation and Maintenance services with efficient material handling solutions. We ensure smooth operations and optimal material flow for industrial projects with our skilled workforce and advanced equipment.',
+  title: 'Operation & Maintenance and Material Handling Service',
+  description: 'Professional O&M services with efficient material handling solutions for industrial projects. Our skilled workforce ensures smooth operations and optimal material flow while maintaining safety standards and environmental balance.',
   icon: Settings,
   image: craneImage,
-  features: ['Operation & Maintenance', 'Material Handling', 'Process Optimization', 'Industrial Support']
+  features: ['Operation & Maintenance', 'Material Handling Solutions', 'Safety Standards', 'Environmental Balance']
 }, {
   title: 'Civil Construction & Industrial Project Work',
-  description: 'End-to-end civil construction services for industrial and commercial projects. From foundation to completion, we deliver quality construction with attention to detail and adherence to timelines.',
+  description: 'Complete civil construction services for industrial projects across Odisha and neighboring regions. We deliver projects with safety, quality, and within stipulated timelines, earning trust from reputed clients in the industrial sector.',
   icon: Building,
   image: civilImage,
-  features: ['Complete Project Management', 'Quality Construction', 'Industrial Expertise', 'Timely Delivery']
+  features: ['Industrial Projects', 'Quality & Safety', 'Timely Delivery', 'Trusted by Reputed Clients']
 }];
 export const ServicesSection = () => {
   const [isVisible, setIsVisible] = useState(false);

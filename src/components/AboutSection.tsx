@@ -57,14 +57,16 @@ export const AboutSection = () => {
             <div>
               <h3 className="text-subsection-title text-foreground mb-4">Our Story</h3>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                Founded in <strong>2013</strong> by <strong>Mr. Anirudha Mohanty</strong>, CMC Infratech Pvt. Ltd. 
-                has grown from a small construction venture to one of Odisha&apos;s most trusted infrastructure companies. 
-                With a dedicated workforce of over <strong>500 skilled professionals</strong>, we have successfully 
-                completed <strong>120+ projects</strong> across various sectors.
+                CMC Infratech Pvt. Ltd., founded in 2013 by Mr. Anirudha Mohanty and headquartered at Chorda, Jajpur Road, Odisha, 
+                is a leading infrastructure and construction company specializing in heavy equipment rental, operation & maintenance, 
+                material handling, civil construction, and industrial project works. With a fleet of advanced machinery and more than 
+                500 skilled professionals and engineers, we have successfully completed over 120 projects across Odisha.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                Our commitment to quality, safety, and timely delivery has made us the preferred partner 
-                for major industrial clients including Jindal Stainless Ltd, JSW Cement Ltd, and Rashmi Metalliks Ltd.
+                We are trusted by reputed clients such as Jindal Stainless Limited, JSW Cement Limited, and Rashmi Metalliks Ltd., 
+                delivering projects with safety, quality, and within stipulated timelines. Under the leadership of our Chairman & 
+                Managing Director, Mr. Anirudha Mohanty, we have earned respect in the industrial and mining sectors through our 
+                commitment to excellence, statutory compliance, and safeguarding man-machine-environment balance.
               </p>
             </div>
 
@@ -75,8 +77,9 @@ export const AboutSection = () => {
                 Our Vision
               </h4>
               <p className="text-muted-foreground font-medium">
-                "To become the No.1 infrastructure company in Odisha by delivering exceptional 
-                construction and equipment rental services."
+                "To become the No. 1 infrastructure development company in Odisha, continuously expanding our presence across 
+                the state and neighboring regions while maintaining our commitment to excellence, safety, quality, and delivering 
+                projects within stipulated timelines."
               </p>
             </div>
 
@@ -132,10 +135,11 @@ export const AboutSection = () => {
             <p className="text-primary font-medium">Mr. Anirudha Mohanty</p>
           </div>
           <blockquote className="text-muted-foreground text-lg leading-relaxed italic text-center max-w-4xl mx-auto">
-            "At CMC Infratech, we believe that every construction project is an opportunity to build not just structures, 
-            but relationships and trust. Our commitment to understanding our clients&apos; needs and delivering beyond 
-            expectations has been the cornerstone of our success. We take pride in our skilled workforce, modern equipment 
-            fleet, and unwavering dedication to safety and quality."
+            "Under my leadership, CMC Infratech has earned respect in the industrial and mining sectors through our unwavering 
+            commitment to excellence, statutory compliance, and safeguarding man-machine-environment balance. We are trusted by 
+            reputed clients and continue to deliver projects with safety, quality, and within stipulated timelines. Our vision 
+            to become Odisha's No. 1 infrastructure development company drives us forward every day, as we continuously expand 
+            our presence across the state and neighboring regions."
           </blockquote>
         </div>
       </div>
