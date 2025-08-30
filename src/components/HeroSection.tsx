@@ -2,8 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import { ArrowRight, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/hero-construction.jpg';
-import video from '@/assets/Video_Ready_After_Tagline_Removal.mp4';
-
+// import video from '@/assets/Video_Ready_After_Tagline_Removal.mp4';
+import video from '@/assets/Video_Resized_for_Mobile_Screen.mp4'
 export const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [loadVideo, setLoadVideo] = useState(false);
@@ -14,7 +14,15 @@ export const HeroSection = () => {
   useEffect(() => {
     setIsVisible(true);
 
-    // Lazy-load video when hero scrolls into view (lower threshold for mobile)
+    // If on mobile, load video immediately and try to play (muted). Otherwise lazy-load via IntersectionObserver.
+    const isMobile = typeof window !== 'undefined' && (window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent || ''));
+
+    if (isMobile) {
+      setLoadVideo(true);
+      return;
+    }
+
+    // Lazy-load video when hero scrolls into view (desktop)
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
@@ -45,6 +53,7 @@ export const HeroSection = () => {
   };
 
   const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = typeof window !== 'undefined' && (window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent || ''));
 
   const toggleVideo = () => {
     const v = videoRef.current;
@@ -76,14 +85,14 @@ export const HeroSection = () => {
   }, [loadVideo]);
 
   return (
-    <section id="home" ref={sectionRef as any} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" ref={sectionRef as any} className="relative h-[70vh] md:min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Video (MP4) with image poster/fallback and overlay */}
       <div className="absolute inset-0">
         {/* Video shown on small+ screens; mobile will use the image fallback to save bandwidth */}
         {loadVideo && (
           <video
             ref={videoRef}
-            className="block w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover"
             autoPlay={!prefersReducedMotion}
             muted
             loop
@@ -94,16 +103,31 @@ export const HeroSection = () => {
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
           >
-            <source src={video} type="video/mp4" />
-            {/* Fallback: browsers will display poster/image */}
+            {
+              /* Prefer additional mobile-specific files if available:
+                 1) /hero-video2.mp4 (video2) - highest preference for mobile
+                 2) /hero-video-small.mp4 - fallback mobile-optimized
+                 3) bundled `video` as final fallback
+              */
+            }
+            {isMobile ? (
+              <>
+                <source src="/hero-video2.mp4" type="video/mp4" />
+                <source src="/hero-video-small.mp4" type="video/mp4" />
+                <source src={video} type="video/mp4" />
+              </>
+            ) : (
+              <source src={video} type="video/mp4" />
+            )}
           </video>
         )}
 
-        {/* Fallback image (always present) */}
+        {/* Fallback image (always present). Hidden with opacity when the video is playing to avoid double paint. */}
         <img
           src={heroImage}
           alt="CMC Infratech Construction Site"
-          className="w-full h-full object-cover"
+          className={`absolute inset-0 w-full h-full object-cover ${isPlaying ? 'opacity-0' : 'opacity-100'} transition-opacity duration-500`}
+          aria-hidden={isPlaying}
         />
 
         <div className="absolute inset-0 gradient-hero"></div>
@@ -115,7 +139,8 @@ export const HeroSection = () => {
             aria-pressed={isPlaying}
             aria-label={isPlaying ? 'Pause background video' : 'Play background video'}
             onClick={toggleVideo}
-            className="flex items-center justify-center absolute bottom-6 right-6 z-20 w-12 h-12 bg-white/20 hover:bg-white/30 text-white rounded-full backdrop-blur-sm touch-manipulation"
+            className="flex items-center justify-center absolute z-20 bg-white/20 hover:bg-white/30 text-white rounded-full backdrop-blur-sm touch-manipulation"
+            style={{ bottom: 'calc(env(safe-area-inset-bottom, 0px) + 0.75rem)', right: '0.75rem', width: '3rem', height: '3rem' }}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               {isPlaying ? (
@@ -136,33 +161,11 @@ export const HeroSection = () => {
         <div className={`fade-in-up ${isVisible ? 'animate' : ''}`}>
           {/* Logo removed per request */}
 
-          {/* Main Heading */}
-          <h1 className="text-hero mb-6">
-            <span className="block mb-2">CMC Infratech</span>
-            <span className="block text-3xl sm:text-4xl lg:text-5xl text-secondary">Pvt. Ltd.</span>
-          </h1>
+          {/* Main Heading removed per request */}
 
           {/* Tagline and key stats removed per request */}
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              onClick={scrollToContact}
-              className="btn-hero group"
-            >
-              <Phone size={20} className="mr-2" />
-              Contact Us Today
-              <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            
-            <Button 
-              variant="outline"
-              className="btn-outline border-white text-white hover:bg-white hover:text-primary"
-              onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-            >
-              Learn More About Us
-            </Button>
-          </div>
+          {/* CTAs removed per request */}
         </div>
       </div>
 
