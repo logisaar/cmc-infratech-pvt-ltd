@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import cmcLogo from '@/assets/cmc-logo.png';
 
 const navigationItems = [
   { id: 'home', label: 'Home' },
@@ -60,9 +61,11 @@ export const DesktopNavigation = () => {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-primary rounded flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">C</span>
-              </div>
+              <img 
+                src={cmcLogo}
+                alt="CMC Infratech Logo" 
+                className="h-10 w-auto"
+              />
               <div>
                 <h1 className="text-xl font-bold text-foreground">CMC Infratech</h1>
                 <p className="text-xs text-muted-foreground">Pvt. Ltd.</p>

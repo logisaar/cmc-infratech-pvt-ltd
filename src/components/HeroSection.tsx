@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ArrowRight, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/hero-construction.jpg';
+import cmcLogo from '@/assets/cmc-logo.png';
 
 export const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -39,8 +40,12 @@ export const HeroSection = () => {
         <div className={`fade-in-up ${isVisible ? 'animate' : ''}`}>
           {/* Company Logo */}
           <div className="mb-8">
-            <div className="w-16 h-16 mx-auto mb-4 bg-secondary rounded-xl flex items-center justify-center">
-              <span className="text-secondary-foreground font-bold text-2xl">C</span>
+            <div className="w-20 h-20 mx-auto mb-4 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center p-3">
+              <img 
+                src={cmcLogo}
+                alt="CMC Infratech Logo" 
+                className="w-full h-full object-contain"
+              />
             </div>
           </div>
 
