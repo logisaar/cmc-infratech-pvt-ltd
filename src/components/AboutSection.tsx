@@ -1,0 +1,144 @@
+import { useEffect, useRef, useState } from 'react';
+import { Award, Users, Target, Shield } from 'lucide-react';
+import companyBuilding from '@/assets/company-building.jpg';
+
+export const AboutSection = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <section id="about" ref={sectionRef} className="section-padding bg-muted/30">
+      <div className="section-container">
+        {/* Section Header */}
+        <div className={`text-center mb-16 fade-in-up ${isVisible ? 'animate' : ''}`}>
+          <h2 className="text-section-title text-primary mb-6">About CMC Infratech</h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Leading the construction industry in Odisha with excellence, safety, and innovation since 2013.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Image */}
+          <div className={`fade-in-up ${isVisible ? 'animate' : ''}`}>
+            <div className="relative">
+              <img 
+                src={companyBuilding} 
+                alt="CMC Infratech Company Building" 
+                className="rounded-2xl shadow-strong w-full"
+              />
+              <div className="absolute inset-0 bg-primary/10 rounded-2xl"></div>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className={`space-y-8 slide-in-left ${isVisible ? 'animate' : ''}`}>
+            {/* Company Story */}
+            <div>
+              <h3 className="text-subsection-title text-foreground mb-4">Our Story</h3>
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                Founded in <strong>2013</strong> by <strong>Mr. Anirudha Mohanty</strong>, CMC Infratech Pvt. Ltd. 
+                has grown from a small construction venture to one of Odisha&apos;s most trusted infrastructure companies. 
+                With a dedicated workforce of over <strong>500 skilled professionals</strong>, we have successfully 
+                completed <strong>120+ projects</strong> across various sectors.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Our commitment to quality, safety, and timely delivery has made us the preferred partner 
+                for major industrial clients including Jindal Stainless Ltd, JSW Cement Ltd, and Rashmi Metalliks Ltd.
+              </p>
+            </div>
+
+            {/* Vision */}
+            <div className="bg-card p-6 rounded-xl border border-border">
+              <h4 className="text-xl font-semibold text-foreground mb-3 flex items-center">
+                <Target className="w-5 h-5 text-primary mr-2" />
+                Our Vision
+              </h4>
+              <p className="text-muted-foreground font-medium">
+                "To become the No.1 infrastructure company in Odisha by delivering exceptional 
+                construction and equipment rental services."
+              </p>
+            </div>
+
+            {/* Key Values */}
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div className="flex items-start space-x-3">
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Award className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h5 className="font-semibold text-foreground mb-1">Excellence</h5>
+                  <p className="text-sm text-muted-foreground">Delivering superior quality in every project</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-3">
+                <div className="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Shield className="w-5 h-5 text-secondary" />
+                </div>
+                <div>
+                  <h5 className="font-semibold text-foreground mb-1">Safety First</h5>
+                  <p className="text-sm text-muted-foreground">Prioritizing safety in all operations</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-3">
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Users className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h5 className="font-semibold text-foreground mb-1">Team Work</h5>
+                  <p className="text-sm text-muted-foreground">Building success through collaboration</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-3">
+                <div className="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Target className="w-5 h-5 text-secondary" />
+                </div>
+                <div>
+                  <h5 className="font-semibold text-foreground mb-1">Timely Delivery</h5>
+                  <p className="text-sm text-muted-foreground">Meeting deadlines with precision</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* CMD Message */}
+        <div className={`mt-16 bg-card p-8 rounded-2xl border border-border shadow-soft fade-in-up ${isVisible ? 'animate' : ''}`}>
+          <div className="text-center mb-6">
+            <h4 className="text-xl font-semibold text-foreground mb-2">Message from Chairman & Managing Director</h4>
+            <p className="text-primary font-medium">Mr. Anirudha Mohanty</p>
+          </div>
+          <blockquote className="text-muted-foreground text-lg leading-relaxed italic text-center max-w-4xl mx-auto">
+            "At CMC Infratech, we believe that every construction project is an opportunity to build not just structures, 
+            but relationships and trust. Our commitment to understanding our clients&apos; needs and delivering beyond 
+            expectations has been the cornerstone of our success. We take pride in our skilled workforce, modern equipment 
+            fleet, and unwavering dedication to safety and quality."
+          </blockquote>
+        </div>
+      </div>
+    </section>
+  );
+};
