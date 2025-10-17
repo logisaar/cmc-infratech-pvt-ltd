@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Award, Users, Target, Shield } from 'lucide-react';
 import companyBuilding from '@/assets/company-building.jpg';
+// note: the repository contains `owne.jpg` (typo). Import that existing file.
+import ownerImg from '@/assets/owne.jpg';
 
 export const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -128,19 +130,28 @@ export const AboutSection = () => {
           </div>
         </div>
 
-        {/* CMD Message */}
+        {/* CMD Message with owner image */}
         <div className={`mt-16 bg-card p-8 rounded-2xl border border-border shadow-soft fade-in-up ${isVisible ? 'animate' : ''}`}>
-          <div className="text-center mb-6">
-            <h4 className="text-xl font-semibold text-foreground mb-2">Message from Chairman & Managing Director</h4>
-            <p className="text-primary font-medium">Mr. Anirudha Mohanty</p>
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+            <img
+              src={ownerImg}
+              alt="Mr. Anirudha Mohanty - Chairman & Managing Director"
+              className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover shadow-md flex-shrink-0"
+            />
+
+            <div className="text-center md:text-left">
+              <h4 className="text-xl font-semibold text-foreground mb-1">Message from Chairman & Managing Director</h4>
+              <p className="text-primary font-medium mb-4">Mr. Anirudha Mohanty</p>
+
+              <blockquote className="text-muted-foreground text-base leading-relaxed italic max-w-3xl">
+                "Under my leadership, CMC Infratech has earned respect in the industrial and mining sectors through our unwavering
+                commitment to excellence, statutory compliance, and safeguarding man-machine-environment balance. We are trusted by
+                reputed clients and continue to deliver projects with safety, quality, and within stipulated timelines. Our vision
+                to become Odisha's No. 1 infrastructure development company drives us forward every day, as we continuously expand
+                our presence across the state and neighboring regions."
+              </blockquote>
+            </div>
           </div>
-          <blockquote className="text-muted-foreground text-lg leading-relaxed italic text-center max-w-4xl mx-auto">
-            "Under my leadership, CMC Infratech has earned respect in the industrial and mining sectors through our unwavering 
-            commitment to excellence, statutory compliance, and safeguarding man-machine-environment balance. We are trusted by 
-            reputed clients and continue to deliver projects with safety, quality, and within stipulated timelines. Our vision 
-            to become Odisha's No. 1 infrastructure development company drives us forward every day, as we continuously expand 
-            our presence across the state and neighboring regions."
-          </blockquote>
         </div>
       </div>
     </section>
