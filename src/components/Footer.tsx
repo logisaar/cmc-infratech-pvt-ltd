@@ -105,16 +105,12 @@ export const Footer = () => {
         <div className="border-t border-primary-foreground/20 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Copyright */}
-            <div className="text-center md:text-left">
-              <p className="text-sm text-primary-foreground/80">
-                © {currentYear} CMC Infratech Pvt. Ltd. All rights reserved.
-              </p>
-              <div className="flex flex-wrap gap-4 mt-2 text-xs text-primary-foreground/60">
-                <span>GSTIN: 21AAFCC5159G1ZX</span>
-                <span>PAN: AAFCC5159G</span>
-                <span>EPF & ESIC Registered</span>
-              </div>
-            </div>
+            <p style={{textAlign: 'left', fontSize: '14px', color: '#777', marginTop: '20px'}} className="w-full">
+              © 2025 All Rights Reserved | Made by{' '}
+              <a href="https://logisaar.in" target="_blank" style={{color: '#007bff', textDecoration: 'none'}}>
+                Logisaar
+              </a>
+            </p>
 
             {/* Social Media */}
             <div className="flex items-center space-x-4">
